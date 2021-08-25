@@ -1,0 +1,9 @@
+name: Sample Workflow
+on: [push]
+jobs:
+  sample-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${{ github }}
+      - run: echo ${{ secrets }}
