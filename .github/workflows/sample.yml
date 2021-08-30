@@ -3,7 +3,7 @@ on: [push]
 jobs:
   sample-workflow:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/m*' || github.ref == 'refs/heads/d*'
+    if: github.ref == 'refs/heads/m**' || github.ref == 'refs/heads/d**'
     steps:
       - uses: actions/checkout@v2
       - run: echo ${{ github.ref }}
