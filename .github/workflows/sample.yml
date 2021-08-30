@@ -6,5 +6,5 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
     steps:
       - uses: actions/checkout@v2
-      - run: echo ${{ github }}
+      - run: echo ${{ github.ref }}
       - run: echo success
