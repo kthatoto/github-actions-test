@@ -1,0 +1,11 @@
+name: Triggered by b change
+on:
+  push:
+    paths:
+      - b/**/
+jobs:
+  triggered-by-b-change:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "b changed!"
