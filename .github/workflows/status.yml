@@ -1,0 +1,9 @@
+name: Status check
+on:
+  status
+jobs:
+  if_success:
+    runs-on: ubuntu-latest
+    if: github.event.status == 'success'
+    steps:
+      - run: echo "All success!!"
