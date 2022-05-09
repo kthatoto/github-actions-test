@@ -4,6 +4,6 @@ on:
 jobs:
   if_success:
     runs-on: ubuntu-latest
-    if: github.event.status == 'success'
+    if: github.event.state == 'success'
     steps:
       - run: echo "All success!!"
