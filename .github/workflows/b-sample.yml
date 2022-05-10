@@ -6,8 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          if [[ ${{ github.sha }} != $(git rev-parse origin/develop) ]] \
-          && [[ 0 == $(( $(git diff origin/develop...${{ github.sha }} --name-only | grep '^b/') | wc -l )) ]]
+          if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
+          && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '^b/') | wc -l )) ]]
           then
             echo "Skip"
           else
