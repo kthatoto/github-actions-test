@@ -18,7 +18,7 @@ jobs:
           echo ${{ steps.export_paths.outputs.PATHS }}
       - run: |
           if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
-          && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '${{ env.PATHS }}' | wc -l) )) ]]
+          && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '${{ steps.export_paths.outputs.PATHS }}' | wc -l) )) ]]
           then
             echo "Skip"
           else
