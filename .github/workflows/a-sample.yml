@@ -5,10 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
-          ref:
-            - main
-            - ${{ github.sha }}
+          ref: main
       - run: git branch
       - run: git branch -a
       - run: git rev-parse origin/main
