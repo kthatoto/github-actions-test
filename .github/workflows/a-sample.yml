@@ -10,11 +10,9 @@ jobs:
           fetch-depth: 0
       - id: export_paths
         run: |
-          export PATHS=$(
-            "^a/" + "\|" + \
-            "^aa/" + "\|" + \
-            "^aaa/" + "\|" \
-          )
+          PATHS="^a/\|"
+          PATHS+="^aa/\|"
+          PATHS+="^aaa/\|"
           echo "::set-output name=paths::${PATHS}"
       - run: |
           echo ${{ steps.vars.outputs.paths }}
