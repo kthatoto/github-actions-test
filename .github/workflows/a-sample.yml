@@ -13,7 +13,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: echo ${{ join(env.PATHS, '\|') }}
+      - id: export_paths
+        run: |
+          export PATHS=$(
+            "^a/" + "\|" + \
+            "^aa/" + "\|" + \
+            "^aaa/" + "\|" \
+          )
+          echo "::set-output name=paths::${PATHS}"
+      - run: |
+          echo ${{ steps.vars.outputs.paths }}
       - run: |
           if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
           && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '${{ env.PATHS }}' | wc -l) )) ]]
