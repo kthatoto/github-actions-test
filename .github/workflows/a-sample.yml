@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: git branch
+      - run: git branch -a
+      - run: git rev-parse origin/main
+      - run: git rev-parse main
       - run: |
           if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
           && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '^a/') | wc -l )) ]]
