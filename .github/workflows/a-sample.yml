@@ -12,7 +12,7 @@ jobs:
       - run: git rev-parse origin/main
       - run: |
           if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
-          && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '^a/') | wc -l )) ]]
+          && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '^a/' | wc -l) )) ]]
           then
             echo "Skip"
           else
