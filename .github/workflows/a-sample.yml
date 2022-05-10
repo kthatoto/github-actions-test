@@ -1,11 +1,15 @@
 name: Triggered by a change
-on:
-  push:
-    paths:
-      - a/**/
+on: [push]
 jobs:
   triggered-by-a-change:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo "a changed!"
+      - run: |
+          if [[ ${{ github.sha }} != $(git rev-parse origin/develop) ]] \
+          && [[ 0 == $(( $(git diff origin/develop...${{ github.sha }} --name-only | grep '^a/') | wc -l )) ]]
+          then
+            echo "Skip"
+          else
+            echo "a changed!"
+          fi
