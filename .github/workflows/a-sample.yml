@@ -12,7 +12,7 @@ jobs:
         run: |
           PATHS="^a/\|"
           PATHS+="^aa/\|"
-          PATHS+="^aaa/\|"
+          PATHS+="^aaa/target.txt$"
           echo "::set-output name=paths::${PATHS}"
       - run: |
           echo ${{ steps.export_paths.outputs.PATHS }}
