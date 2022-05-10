@@ -2,7 +2,7 @@ name: Triggered by a change
 on: [push]
 
 env:
-  PATHS: ['^a/', '^aa/', '^aaa/']
+  PATHS: '^a/\|^aa/\|^aaa/'
 jobs:
   triggered-by-a-change:
     runs-on: ubuntu-latest
@@ -13,7 +13,7 @@ jobs:
       - run: echo ${{ join(env.PATHS, '\|') }}
       - run: |
           if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
-          && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep ${{ join(env.PATHS, '\|') }} | wc -l) )) ]]
+          && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep ${{ env.PATHS }} | wc -l) )) ]]
           then
             echo "Skip"
           else
