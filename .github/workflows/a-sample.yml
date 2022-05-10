@@ -15,7 +15,7 @@ jobs:
           PATHS+="^aaa/\|"
           echo "::set-output name=paths::${PATHS}"
       - run: |
-          echo ${{ steps.vars.outputs.paths }}
+          echo ${{ steps.vars.outputs.PATHS }}
       - run: |
           if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
           && [[ 0 == $(( $(git diff origin/main...${{ github.sha }} --name-only | grep '${{ env.PATHS }}' | wc -l) )) ]]
