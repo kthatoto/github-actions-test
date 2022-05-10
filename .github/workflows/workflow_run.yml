@@ -1,7 +1,7 @@
 name: Workflow run
 on:
   workflow_run:
-    workflows: [Triggered by a change]
+    workflows: [Triggered by a change, Triggered by b change]
     types:
       - completed
 jobs:
