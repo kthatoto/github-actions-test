@@ -1,11 +1,6 @@
 name: Triggered by a change
 on: [push]
 
-env:
-  PATHS: \
-    '^a/' + '\|' + \
-    '^aa/' + '\|' + \
-    '^aaa/' + '\|'
 jobs:
   triggered-by-a-change:
     runs-on: ubuntu-latest
