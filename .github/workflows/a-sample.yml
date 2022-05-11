@@ -16,6 +16,7 @@ jobs:
           echo "::set-output name=paths::${PATHS}"
       - run: |
           echo ${{ steps.export_paths.outputs.PATHS }}
+          git diff origin/main...${{ github.sha }} --name-only | grep '^aa/\|*\.txt'
       - id: skip_flag
         run: |
           if [[ ${{ github.sha }} != $(git rev-parse origin/main) ]] \
