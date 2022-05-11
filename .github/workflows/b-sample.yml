@@ -24,8 +24,8 @@ jobs:
             echo "::set-output name=skip::false"
           fi
 
-      - if: ${{ steps.skip_flag.outputs.skip }} == "true"
+      - if: steps.skip_flag.outputs.skip == "true"
         run: echo "Skip!"
 
-      - if: ${{ steps.skip_flag.outputs.skip }} != "true"
+      - if: steps.skip_flag.outputs.skip != "true"
         run: echo "Executed!"
