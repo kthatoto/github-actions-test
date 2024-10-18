@@ -1,0 +1,26 @@
+name: Test
+on: [push]
+jobs:
+  report-slayers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: report
+        name: Get report
+        run: |
+          echo "count=1" >> $GITHUB_OUTPUT
+          echo "body=1\n2\n3" >> $GITHUB_OUTPUT
+      - if: steps.report.outputs.count > 0
+        name: Send to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload: |
+            {
+              "count": "${{ steps.report.outputs.count }}",
+              "body": "${{ steps.report.outputs.body }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.FRONTEND_IGNORE_COMMENT_SLAYERS_WEBHOOK_URL }}
