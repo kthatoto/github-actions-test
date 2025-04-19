@@ -10,3 +10,4 @@ pr-tp() {
     --body "This is a test PR created by a script."
   gh pr view --web
 }
+pr-tp
